@@ -335,7 +335,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: clamp(10px, 1.4vw, 16px);
-    margin-bottom: clamp(14px, 2.2vh, 22px);
+    margin-bottom: 0;
   }
 
   .kpi-card {
@@ -380,7 +380,7 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
-    margin-bottom: auto;
+    margin-bottom: clamp(16px, 2.4vh, 24px);
   }
 
   .info-block {
@@ -705,12 +705,12 @@
     transform: none;
   }
 
-  .js-anim .is-visible .kpi-card:nth-child(1) { transition-delay: 0.05s; }
-  .js-anim .is-visible .kpi-card:nth-child(2) { transition-delay: 0.10s; }
-  .js-anim .is-visible .kpi-card:nth-child(3) { transition-delay: 0.15s; }
-  .js-anim .is-visible .kpi-card:nth-child(4) { transition-delay: 0.20s; }
-  .js-anim .is-visible .content-blocks { transition-delay: 0.10s; }
-  .js-anim .is-visible .links-section { transition-delay: 0.15s; }
+  .js-anim .is-visible .content-blocks { transition-delay: 0.06s; }
+  .js-anim .is-visible .kpi-card:nth-child(1) { transition-delay: 0.10s; }
+  .js-anim .is-visible .kpi-card:nth-child(2) { transition-delay: 0.14s; }
+  .js-anim .is-visible .kpi-card:nth-child(3) { transition-delay: 0.18s; }
+  .js-anim .is-visible .kpi-card:nth-child(4) { transition-delay: 0.22s; }
+  .js-anim .is-visible .links-section { transition-delay: 0.18s; }
   .js-anim .is-visible .case-right,
   .js-anim .is-visible .title-right,
   .js-anim .is-visible .contact-right { transition-delay: 0.08s; }
@@ -1024,17 +1024,6 @@
           <h2 class="case-title">TOP Talks X Spaces</h2>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-value">50K+</div>
-            <div class="kpi-label">combined reach for announcements</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-value">5K+</div>
-            <div class="kpi-label">Unique listeners</div>
-          </div>
-        </div>
-
         <div class="content-blocks">
           <div class="info-block">
             <div class="block-label">Objective</div>
@@ -1047,6 +1036,17 @@
           <div class="info-block">
             <div class="block-label">Guests</div>
             <div class="block-text compact">Bybit, Kraken, Ethena, STON.fi, TON Foundation, Wallet in Telegram, Euler, TAC, and TON Tech.</div>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-value">50K+</div>
+            <div class="kpi-label">combined reach for announcements</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-value">5K+</div>
+            <div class="kpi-label">Unique listeners</div>
           </div>
         </div>
       </div>
@@ -1082,13 +1082,6 @@
           <h2 class="case-title">Tonkeeper x TRON Tweet</h2>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-value">100K+</div>
-            <div class="kpi-label">combined reach from reposts and quote posts by TRON ambassadors</div>
-          </div>
-        </div>
-
         <div class="content-blocks">
           <div class="info-block">
             <div class="block-label">Objective</div>
@@ -1097,6 +1090,13 @@
           <div class="info-block">
             <div class="block-label">Approach</div>
             <div class="block-text">Crafted a launch post tailored to TRON users — earning organic amplification from TRON DAO, ecosystem ambassadors, and a repost from Justin Sun.</div>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-value">100K+</div>
+            <div class="kpi-label">combined reach from reposts and quote posts by TRON ambassadors</div>
           </div>
         </div>
       </div>
@@ -1127,17 +1127,17 @@
           <h2 class="case-title">Tonkeeper × AP × Swatch Trendjack</h2>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-value">18K+</div>
-            <div class="kpi-label">Organic reach</div>
-          </div>
-        </div>
-
         <div class="content-blocks">
           <div class="info-block">
             <div class="block-label">Concept</div>
             <div class="block-text">Capitalize on a viral trend ahead of the Swatch x AP collaboration.</div>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-value">18K+</div>
+            <div class="kpi-label">Organic reach</div>
           </div>
         </div>
       </div>
@@ -1167,17 +1167,6 @@
           <h2 class="case-title">Tonkeeper × Changelly X Article</h2>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-value">54.7K+</div>
-            <div class="kpi-label">reach</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-value">55</div>
-            <div class="kpi-label">reposts</div>
-          </div>
-        </div>
-
         <div class="content-blocks">
           <div class="info-block">
             <div class="block-label">Objective</div>
@@ -1186,6 +1175,17 @@
           <div class="info-block">
             <div class="block-label">Approach</div>
             <div class="block-text">Published a long-form X article walking users through cross-chain deposits and 1:1 withdrawals inside Tonkeeper.</div>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-value">54.7K+</div>
+            <div class="kpi-label">reach</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-value">55</div>
+            <div class="kpi-label">reposts</div>
           </div>
         </div>
       </div>
@@ -1215,6 +1215,17 @@
           <h2 class="case-title">Gift Fest</h2>
         </div>
 
+        <div class="content-blocks">
+          <div class="info-block">
+            <div class="block-label">Objective</div>
+            <div class="block-text">Build social and community operations from zero for a seasonal Telegram game featuring a $400K prize pool.</div>
+          </div>
+          <div class="info-block">
+            <div class="block-label">Approach</div>
+            <div class="block-text compact">Owned strategy, messaging, and Tone of Voice from launch. Defined visual direction (templates + AI art style), built content pillars and cadence, set up social listening, and hired the SMM and community team.</div>
+          </div>
+        </div>
+
         <div class="kpi-row kpi-row-4">
           <div class="kpi-card">
             <div class="kpi-value">4.6M+</div>
@@ -1231,17 +1242,6 @@
           <div class="kpi-card">
             <div class="kpi-value">1%+</div>
             <div class="kpi-label">ERR</div>
-          </div>
-        </div>
-
-        <div class="content-blocks">
-          <div class="info-block">
-            <div class="block-label">Objective</div>
-            <div class="block-text">Build social and community operations from zero for a seasonal Telegram game featuring a $400K prize pool.</div>
-          </div>
-          <div class="info-block">
-            <div class="block-label">Approach</div>
-            <div class="block-text compact">Owned strategy, messaging, and Tone of Voice from launch. Defined visual direction (templates + AI art style), built content pillars and cadence, set up social listening, and hired the SMM and community team.</div>
           </div>
         </div>
       </div>
@@ -1272,17 +1272,6 @@
           <h2 class="case-title">PocketFi Ambassador Program</h2>
         </div>
 
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-value">350+</div>
-            <div class="kpi-label">Native posts from 50+ KOLs</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-value">400K+</div>
-            <div class="kpi-label">total views</div>
-          </div>
-        </div>
-
         <div class="content-blocks">
           <div class="info-block">
             <div class="block-label">Objective</div>
@@ -1291,6 +1280,17 @@
           <div class="info-block">
             <div class="block-label">Approach</div>
             <div class="block-text">Designed and ran the ambassador program end to end — covering KOL sourcing, incentive structure, content playbooks, and performance tracking.</div>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-value">350+</div>
+            <div class="kpi-label">Native posts from 50+ KOLs</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-value">400K+</div>
+            <div class="kpi-label">total views</div>
           </div>
         </div>
       </div>
@@ -1323,6 +1323,17 @@
           <h2 class="case-title">TON Punks Burn Fest Announcement Tweet</h2>
         </div>
 
+        <div class="content-blocks">
+          <div class="info-block">
+            <div class="block-label">Objective</div>
+            <div class="block-text">Drive traffic and trading interest to PocketFi DEX through a joint $PUNK burn campaign.</div>
+          </div>
+          <div class="info-block">
+            <div class="block-label">Result</div>
+            <div class="block-text">Over 160K $PUNK (~$15K) burned by 5K+ participants.</div>
+          </div>
+        </div>
+
         <div class="kpi-row">
           <div class="kpi-card">
             <div class="kpi-value">67K+</div>
@@ -1331,17 +1342,6 @@
           <div class="kpi-card">
             <div class="kpi-value">5K+</div>
             <div class="kpi-label">participants</div>
-          </div>
-        </div>
-
-        <div class="content-blocks">
-          <div class="info-block">
-            <div class="block-label">Objective</div>
-            <div class="block-text">Drive traffic and trading interest to PocketFi DEX through a joint $PUNK burn campaign.</div>
-          </div>
-          <div class="info-block">
-            <div class="block-label">Result</div>
-            <div class="block-text">Over 160K $PUNK (~$15K) burned.</div>
           </div>
         </div>
       </div>
