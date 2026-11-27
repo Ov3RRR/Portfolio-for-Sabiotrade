@@ -676,24 +676,36 @@
   .js-anim .case-section .links-section,
   .js-anim .contact-section .contact-left {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translate3d(0, 24px, 0);
     transition:
-      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .js-anim .hero-section .title-right,
   .js-anim .case-section .case-right,
   .js-anim .contact-section .contact-right {
     opacity: 0;
-    transform: translateX(26px);
+    transform: translate3d(26px, 0, 0) scale(0.965);
     transition:
-      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .js-anim .hero-section .eco-item {
+    opacity: 0;
+    transform: translate3d(18px, 0, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease;
   }
 
   .js-anim .is-visible .title-left,
   .js-anim .is-visible .title-right,
+  .js-anim .is-visible .eco-item,
   .js-anim .is-visible .case-header,
   .js-anim .is-visible .kpi-card,
   .js-anim .is-visible .content-blocks,
@@ -705,15 +717,19 @@
     transform: none;
   }
 
-  .js-anim .is-visible .content-blocks { transition-delay: 0.06s; }
-  .js-anim .is-visible .kpi-card:nth-child(1) { transition-delay: 0.10s; }
-  .js-anim .is-visible .kpi-card:nth-child(2) { transition-delay: 0.14s; }
-  .js-anim .is-visible .kpi-card:nth-child(3) { transition-delay: 0.18s; }
-  .js-anim .is-visible .kpi-card:nth-child(4) { transition-delay: 0.22s; }
-  .js-anim .is-visible .links-section { transition-delay: 0.18s; }
+  .js-anim .is-visible .eco-item:nth-child(1) { transition-delay: 0.12s, 0.12s, 0s, 0s, 0s; }
+  .js-anim .is-visible .eco-item:nth-child(2) { transition-delay: 0.18s, 0.18s, 0s, 0s, 0s; }
+  .js-anim .is-visible .eco-item:nth-child(3) { transition-delay: 0.24s, 0.24s, 0s, 0s, 0s; }
+  .js-anim .is-visible .eco-item:nth-child(4) { transition-delay: 0.30s, 0.30s, 0s, 0s, 0s; }
+  .js-anim .is-visible .content-blocks { transition-delay: 0.08s; }
+  .js-anim .is-visible .kpi-card:nth-child(1) { transition-delay: 0.14s; }
+  .js-anim .is-visible .kpi-card:nth-child(2) { transition-delay: 0.20s; }
+  .js-anim .is-visible .kpi-card:nth-child(3) { transition-delay: 0.26s; }
+  .js-anim .is-visible .kpi-card:nth-child(4) { transition-delay: 0.32s; }
+  .js-anim .is-visible .links-section { transition-delay: 0.22s; }
   .js-anim .is-visible .case-right,
   .js-anim .is-visible .title-right,
-  .js-anim .is-visible .contact-right { transition-delay: 0.08s; }
+  .js-anim .is-visible .contact-right { transition-delay: 0.10s; }
 
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -1432,15 +1448,58 @@
 <script>
   const sections = Array.from(document.querySelectorAll('.hero-section, .case-section, .contact-section'));
   const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function parseKpi(s) {
+    const m = /^([\d.]+)(.*)$/.exec(s.trim());
+    return m ? { v: parseFloat(m[1]), d: (m[1].split('.')[1] || '').length, s: m[2] } : null;
+  }
+  function fmtKpi(s, t) {
+    const p = parseKpi(s);
+    return p ? (p.v * t).toFixed(p.d) + p.s : s;
+  }
+  function animateKpis(section) {
+    if (prefersReducedMotion) return;
+    section.querySelectorAll('.kpi-value').forEach((el, idx) => {
+      if (!el.dataset.final) return;
+      const final = el.dataset.final;
+      let start = null;
+      const dur = 1500;
+      const delay = 160 + idx * 60;
+      el.textContent = fmtKpi(final, 0);
+      setTimeout(() => {
+        requestAnimationFrame(function step(ts) {
+          if (start === null) start = ts;
+          const t = Math.min(1, (ts - start) / dur);
+          const e = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+          el.textContent = t === 1 ? final : fmtKpi(final, e);
+          if (t < 1) requestAnimationFrame(step);
+        });
+      }, delay);
+    });
+  }
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.kpi-value').forEach(el => {
+      el.dataset.final = el.textContent.trim();
+      el.textContent = fmtKpi(el.dataset.final, 0);
+    });
+  }
+
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (isMobileLayout) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          animateKpis(entry.target);
           sectionObserver.unobserve(entry.target);
         }
       } else {
+        const wasVisible = entry.target.classList.contains('is-visible');
         entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        if (entry.isIntersecting && !wasVisible) {
+          animateKpis(entry.target);
+        }
       }
     });
   }, isMobileLayout ? { threshold: 0.05 } : { rootMargin: '-12% 0px -12% 0px', threshold: 0.05 });
